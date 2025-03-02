@@ -57,6 +57,18 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "E:\\dotnet-book\\wwwroot\\images\\.gitkeep",
+      "PackagePath": "staticwebassets\\images\\.gitkeep"
+    },
+    {
+      "Id": "E:\\dotnet-book\\wwwroot\\images\\20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png",
+      "PackagePath": "staticwebassets\\images\\20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png"
+    },
+    {
+      "Id": "E:\\dotnet-book\\wwwroot\\images\\20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg",
+      "PackagePath": "staticwebassets\\images\\20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

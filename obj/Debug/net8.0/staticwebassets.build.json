@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+7TsYNOj88OMVELTK/3uM5X0uXkkUaCd6qWTVfBwmV4=",
+  "Hash": "crv+eatb6+vkrEk253Ngatn1H6oOYUh55xeHKC/Dqbc=",
   "Source": "BlazorApp",
   "BasePath": "_content/BlazorApp",
   "Mode": "Default",
@@ -330,6 +330,69 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "E:\\dotnet-book\\wwwroot\\images\\.gitkeep",
+      "SourceId": "BlazorApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\dotnet-book\\wwwroot\\",
+      "BasePath": "_content/BlazorApp",
+      "RelativePath": "images/#[.{fingerprint}]?.gitkeep",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\.gitkeep"
+    },
+    {
+      "Identity": "E:\\dotnet-book\\wwwroot\\images\\20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png",
+      "SourceId": "BlazorApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\dotnet-book\\wwwroot\\",
+      "BasePath": "_content/BlazorApp",
+      "RelativePath": "images/20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "mm6ei1z0bn",
+      "Integrity": "8sCnbUww8kK4M954m0WBoCqfkDT9nioJUQ5YPTgAcP8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png"
+    },
+    {
+      "Identity": "E:\\dotnet-book\\wwwroot\\images\\20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg",
+      "SourceId": "BlazorApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\dotnet-book\\wwwroot\\",
+      "BasePath": "_content/BlazorApp",
+      "RelativePath": "images/20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "m9f1xu8epw",
+      "Integrity": "ivz2T1TSy4FzUGQeAcPnk/f6IQmE2pY4EWySNMn6NbQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg"
     }
   ],
   "Endpoints": [
@@ -1560,6 +1623,252 @@
         {
           "Name": "integrity",
           "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
+    },
+    {
+      "Route": "images/.5ipweew5fc.gitkeep",
+      "AssetFile": "E:\\dotnet-book\\wwwroot\\images\\.gitkeep",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 07:40:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "images/.gitkeep"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "images/.gitkeep",
+      "AssetFile": "E:\\dotnet-book\\wwwroot\\images\\.gitkeep",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 07:40:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "images/20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.mm6ei1z0bn.png",
+      "AssetFile": "E:\\dotnet-book\\wwwroot\\images\\20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2416095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8sCnbUww8kK4M954m0WBoCqfkDT9nioJUQ5YPTgAcP8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 07:39:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mm6ei1z0bn"
+        },
+        {
+          "Name": "label",
+          "Value": "images/20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8sCnbUww8kK4M954m0WBoCqfkDT9nioJUQ5YPTgAcP8="
+        }
+      ]
+    },
+    {
+      "Route": "images/20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png",
+      "AssetFile": "E:\\dotnet-book\\wwwroot\\images\\20250302143931_2eee69fe-6b1a-4814-a7a6-8586738d80b2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2416095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8sCnbUww8kK4M954m0WBoCqfkDT9nioJUQ5YPTgAcP8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 07:39:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8sCnbUww8kK4M954m0WBoCqfkDT9nioJUQ5YPTgAcP8="
+        }
+      ]
+    },
+    {
+      "Route": "images/20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg",
+      "AssetFile": "E:\\dotnet-book\\wwwroot\\images\\20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "168594"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ivz2T1TSy4FzUGQeAcPnk/f6IQmE2pY4EWySNMn6NbQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 07:42:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ivz2T1TSy4FzUGQeAcPnk/f6IQmE2pY4EWySNMn6NbQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.m9f1xu8epw.jpg",
+      "AssetFile": "E:\\dotnet-book\\wwwroot\\images\\20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "168594"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ivz2T1TSy4FzUGQeAcPnk/f6IQmE2pY4EWySNMn6NbQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 07:42:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "m9f1xu8epw"
+        },
+        {
+          "Name": "label",
+          "Value": "images/20250302144201_74361d04-9eb5-43b4-9cf5-42dd7d7bff78.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ivz2T1TSy4FzUGQeAcPnk/f6IQmE2pY4EWySNMn6NbQ="
         }
       ]
     }
