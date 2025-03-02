@@ -1,135 +1,143 @@
-﻿@page "/product/edit/{Id:int}"
+﻿@page "/productedit/{Id:int}"
 @using BlazorApp.Data
 @inject ProductService ProductService
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 
-<h3>@(product.Id == 0 ? "Thêm sản phẩm" : "Chỉnh sửa sản phẩm")</h3>
+<h3>Chỉnh Sửa Sản Phẩm</h3>
 
-<EditForm Model="@product" OnValidSubmit="HandleSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div class="row">
-        <div class="col-md-12 mb-3">
-            <label class="form-label">Tên sản phẩm</label>
-            <InputText class="form-control" @bind-Value="product.Name" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Giá</label>
-            <InputNumber class="form-control" @bind-Value="product.Price" />
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Số lượng</label>
-            <InputNumber class="form-control" @bind-Value="product.Soluong" />
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Mô tả</label>
-        <InputTextArea class="form-control" @bind-Value="product.Mota" />
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Tác giả</label>
-            <InputText class="form-control" @bind-Value="product.Tentacgia" />
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Nhà xuất bản</label>
-            <InputText class="form-control" @bind-Value="product.Nxb" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Mã Code</label>
-            <InputText class="form-control" @bind-Value="product.Code" />
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Thể loại</label>
-            <InputText class="form-control" @bind-Value="product.Theloai" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Ngày xuất bản</label>
-            <InputDate class="form-control" @bind-Value="product.Ngayxb" />
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Số trang</label>
-            <InputText class="form-control" @bind-Value="product.Sotrang" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Tình trạng</label>
-            <select class="form-control" @bind="product.Tinhtrang">
-                <option value="">Chọn tình trạng</option>
-                <option value="published">Còn hàng</option>
-                <option value="draft">Hết hàng</option>
-            </select>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Tái bản</label>
-            <InputText class="form-control" @bind-Value="product.Taiban" />
-        </div>
-    </div>
-
-    <button class="btn btn-primary" type="submit">@((product.Id == 0) ? "Thêm sản phẩm" : "Cập nhật sản phẩm")</button>
-    <button class="btn btn-secondary ms-2" @onclick="Cancel">Hủy</button>
-</EditForm>
-
-@if (message != null)
+@if (product == null)
 {
-    <p class="alert alert-success">@message</p>
+    <p>Loading...</p>
+}
+else
+{
+    <EditForm Model="@product" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="name">Tên Sách:</label>
+            <InputText id="name" @bind-Value="product.Name" class="form-control" />
+            <ValidationMessage For="@(() => product.Name)" />
+        </div>
+
+        <div class="form-group">
+            <label for="image">Hình Ảnh:</label>
+            <InputFile OnChange="OnFileChange" accept=".jpg,.jpeg,.png" class="form-control" />
+            @if (!string.IsNullOrEmpty(imagePreview))
+            {
+                <img src="@imagePreview" style="max-width: 200px; margin-top: 10px;" />
+            }
+            else if (!string.IsNullOrEmpty(product.Hinhanh))
+            {
+                <img src="@product.Hinhanh" style="max-width: 200px; margin-top: 10px;" />
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="price">Giá:</label>
+            <InputNumber id="price" @bind-Value="product.Price" class="form-control" />
+            <ValidationMessage For="@(() => product.Price)" />
+        </div>
+
+        <div class="form-group">
+            <label for="mota">Mô Tả:</label>
+            <InputTextArea id="mota" @bind-Value="product.Mota" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="tentacgia">Tác Giả:</label>
+            <InputText id="tentacgia" @bind-Value="product.Tentacgia" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="soluong">Số Lượng:</label>
+            <InputNumber id="soluong" @bind-Value="product.Soluong" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="nxb">Nhà Xuất Bản:</label>
+            <InputText id="nxb" @bind-Value="product.Nxb" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="code">Mã Sách:</label>
+            <InputText id="code" @bind-Value="product.Code" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="theloai">Thể Loại:</label>
+            <InputText id="theloai" @bind-Value="product.Theloai" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="ngayxb">Ngày Xuất Bản:</label>
+            <InputDate id="ngayxb" @bind-Value="product.Ngayxb" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="sotrang">Số Trang:</label>
+            <InputText id="sotrang" @bind-Value="product.Sotrang" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="tinhtrang">Tình Trạng:</label>
+            <InputText id="tinhtrang" @bind-Value="product.Tinhtrang" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="taiban">Tái Bản:</label>
+            <InputText id="taiban" @bind-Value="product.Taiban" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
+        <button type="button" class="btn btn-secondary" @onclick="Cancel">Hủy</button>
+    </EditForm>
 }
 
 @code {
-    private Product product = new Product();
-    private string? message;
+    [Parameter]
+    public int Id { get; set; }
 
-    [Parameter] public int Id { get; set; }
+    private Product? product;
+    private IBrowserFile? selectedFile;
+    private string? imagePreview;
 
     protected override async Task OnInitializedAsync()
     {
-        if (Id != 0)
-        {
-            // Fetch the product if we are editing an existing product
-            product = await ProductService.GetProductByIdAsync(Id);
-        }
+        product = await ProductService.GetProductByIdAsync(Id);
     }
 
-    private async Task HandleSubmit()
+    private async Task OnFileChange(InputFileChangeEventArgs e)
     {
-        if (product.Id == 0)
-        {
-            // Add a new product
-            await ProductService.AddProductAsync(product);
-            message = "Sản phẩm đã được thêm thành công!";
-        }
-        else
-        {
-            // Update an existing product
-            await ProductService.UpdateProductAsync(product);
-            message = "Sản phẩm đã được cập nhật thành công!";
-        }
+        selectedFile = e.File;
+        
+        // Create a data URL for preview
+        var format = "image/jpeg";
+        var buffer = new byte[selectedFile.Size];
+        await selectedFile.OpenReadStream(maxAllowedSize: 10485760).ReadAsync(buffer);
+        imagePreview = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+    }
 
-        // Reset the form and navigate to product list
-        product = new Product();
-        StateHasChanged();
-
-        // Navigate after a brief delay
-        await Task.Delay(1000);
-        Navigation.NavigateTo("/products");
+    private async Task HandleValidSubmit()
+    {
+        if (product != null)
+        {
+            try
+            {
+                await ProductService.UpdateProductAsync(product, selectedFile);
+                NavigationManager.NavigateTo("/products");
+            }
+            catch (Exception ex)
+            {
+                // Handle error (you might want to show an error message to the user)
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
     }
 
     private void Cancel()
     {
-        Navigation.NavigateTo("/products");
+        NavigationManager.NavigateTo("/products");
     }
 }

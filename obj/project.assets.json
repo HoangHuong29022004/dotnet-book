@@ -2263,19 +2263,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/macintosh/.nuget/packages/": {}
+    "C:\\Users\\huong\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/macintosh/Sites/BlazorApp/BlazorApp.csproj",
+      "projectUniqueName": "E:\\dotnet-book\\BlazorApp.csproj",
       "projectName": "BlazorApp",
-      "projectPath": "/Users/macintosh/Sites/BlazorApp/BlazorApp.csproj",
-      "packagesPath": "/Users/macintosh/.nuget/packages/",
-      "outputPath": "/Users/macintosh/Sites/BlazorApp/obj/",
+      "projectPath": "E:\\dotnet-book\\BlazorApp.csproj",
+      "packagesPath": "C:\\Users\\huong\\.nuget\\packages\\",
+      "outputPath": "E:\\dotnet-book\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/macintosh/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\huong\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2298,7 +2298,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -2342,7 +2343,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.406/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

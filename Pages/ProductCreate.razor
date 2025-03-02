@@ -1,122 +1,224 @@
-﻿@page "/product/create"
+﻿@page "/productcreate"
 @using BlazorApp.Data
 @inject ProductService ProductService
-@inject NavigationManager Navigation
-@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject IWebHostEnvironment Environment
 
-<h3>Thêm sản phẩm</h3>
+<div class="container-fluid">
+    <h3 class="mb-4">Thêm Sản Phẩm Mới</h3>
 
-<EditForm Model="@product" OnValidSubmit="AddProduct">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div class="row">
-        <div class="col-12 col-md-12 mb-3">
-            <label class="form-label">Tên sản phẩm</label>
-            <InputText class="form-control" @bind-Value="product.Name" />
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            @errorMessage
         </div>
-    </div>
+    }
 
-    <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Giá</label>
-            <InputNumber class="form-control" @bind-Value="product.Price" />
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Số lượng</label>
-            <InputNumber class="form-control" @bind-Value="product.Soluong" />
-        </div>
-    </div>
+    <EditForm Model="@product" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <div class="mb-3">
-        <label class="form-label">Mô tả</label>
-        <InputTextArea class="form-control" @bind-Value="product.Mota" />
-    </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Tên Sách:</label>
+                            <InputText id="name" @bind-Value="product.Name" class="form-control" />
+                            <ValidationMessage For="@(() => product.Name)" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="price">Giá:</label>
+                            <InputNumber id="price" @bind-Value="product.Price" class="form-control" />
+                            <ValidationMessage For="@(() => product.Price)" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="soluong">Số Lượng:</label>
+                            <InputNumber id="soluong" @bind-Value="product.Soluong" class="form-control" />
+                        </div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Tác giả</label>
-            <InputText class="form-control" @bind-Value="product.Tentacgia" />
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Nhà xuất bản</label>
-            <InputText class="form-control" @bind-Value="product.Nxb" />
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="tentacgia">Tác Giả:</label>
+                            <InputText id="tentacgia" @bind-Value="product.Tentacgia" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="nxb">Nhà Xuất Bản:</label>
+                            <InputText id="nxb" @bind-Value="product.Nxb" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="theloai">Thể Loại:</label>
+                            <InputText id="theloai" @bind-Value="product.Theloai" class="form-control" />
+                        </div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Mã Code</label>
-            <InputText class="form-control" @bind-Value="product.Code" />
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Thể loại</label>
-            <InputText class="form-control" @bind-Value="product.Theloai" />
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="code">Mã Sách:</label>
+                            <InputText id="code" @bind-Value="product.Code" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ngayxb">Ngày Xuất Bản:</label>
+                            <InputDate id="ngayxb" @bind-Value="product.Ngayxb" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="sotrang">Số Trang:</label>
+                            <InputText id="sotrang" @bind-Value="product.Sotrang" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="taiban">Tái Bản:</label>
+                            <InputText id="taiban" @bind-Value="product.Taiban" class="form-control" />
+                        </div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Ngày xuất bản</label>
-            <InputDate class="form-control" @bind-Value="product.Ngayxb" />
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Số trang</label>
-            <InputText class="form-control" @bind-Value="product.Sotrang" />
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tinhtrang">Tình Trạng:</label>
+                            <select id="tinhtrang" @bind="product.Tinhtrang" class="form-control">
+                                <option value="">-- Chọn tình trạng --</option>
+                                <option value="Còn hàng">Còn hàng</option>
+                                <option value="Hết hàng">Hết hàng</option>
+                                <option value="Đặt trước">Đặt trước</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="image">Hình Ảnh:</label>
+                            <InputFile OnChange="OnFileChange" accept=".jpg,.jpeg,.png" class="form-control" />
+                            <small class="text-muted">Chấp nhận file JPG, JPEG, PNG. Tối đa 10MB.</small>
+                            @if (!string.IsNullOrEmpty(imagePreview))
+                            {
+                                <img src="@imagePreview" class="mt-2" style="max-width: 200px;" />
+                            }
+                        </div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Tình trạng</label>
-            <select class="form-control" @bind="product.Tinhtrang">
-                <option value="">Chọn tình trạng</option>
-                <option value="published">Còn hàng</option>
-                <option value="draft">Hết hàng</option>
-            </select>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="mota">Mô Tả:</label>
+                            <InputTextArea id="mota" @bind-Value="product.Mota" class="form-control" rows="4" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary me-2" disabled="@isSubmitting">
+                            @if (isSubmitting)
+                            {
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span class="ms-1">Đang xử lý...</span>
+                            }
+                            else
+                            {
+                                <i class="fas fa-save"></i>
+                                <span>Thêm Sản Phẩm</span>
+                            }
+                        </button>
+                        <button type="button" class="btn btn-secondary" @onclick="Cancel" disabled="@isSubmitting">
+                            <i class="fas fa-times"></i> Hủy
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Tái bản</label>
-            <InputText class="form-control" @bind-Value="product.Taiban" />
-        </div>
-    </div>
-
-    <button class="btn btn-primary" type="submit">Thêm sản phẩm</button>
-    <button class="btn btn-secondary ms-2" @onclick="Cancel">Hủy</button>
-
-</EditForm>
-
-@if (message != null)
-{
-    <p class="alert alert-success">@message</p>
-}
+    </EditForm>
+</div>
 
 @code {
     private Product product = new Product();
-    private string? message;
-    private async Task AddProduct()
+    private IBrowserFile? selectedFile;
+    private string? imagePreview;
+    private string? errorMessage;
+    private bool isSubmitting;
+    private const long MaxFileSize = 10L * 1024L * 1024L; // 10MB
+
+    private async Task OnFileChange(InputFileChangeEventArgs e)
     {
-        if (string.IsNullOrEmpty(product.Name))
+        try
         {
-            message = "Vui lòng điền đầy đủ thông tin!";
-            return;
+            selectedFile = e.File;
+            errorMessage = null;
+
+            // Validate file size
+            if (selectedFile.Size > MaxFileSize)
+            {
+                errorMessage = "File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.";
+                selectedFile = null;
+                imagePreview = null;
+                return;
+            }
+
+            // Validate file type
+            var extension = Path.GetExtension(selectedFile.Name).ToLowerInvariant();
+            if (!new[] { ".jpg", ".jpeg", ".png" }.Contains(extension))
+            {
+                errorMessage = "Chỉ chấp nhận file JPG hoặc PNG.";
+                selectedFile = null;
+                imagePreview = null;
+                return;
+            }
+
+            // Create preview
+            var format = "image/jpeg";
+            if (extension == ".png") format = "image/png";
+
+            using var stream = selectedFile.OpenReadStream(MaxFileSize);
+            using var ms = new MemoryStream();
+            await stream.CopyToAsync(ms);
+            imagePreview = $"data:{format};base64,{Convert.ToBase64String(ms.ToArray())}";
         }
+        catch (Exception ex)
+        {
+            errorMessage = "Lỗi khi xử lý file. Vui lòng thử lại.";
+            selectedFile = null;
+            imagePreview = null;
+            Console.WriteLine($"Error in OnFileChange: {ex.Message}");
+        }
+    }
 
-        // Add product using the service
-        await ProductService.AddProductAsync(product);
-
-        // Success message
-        message = "Sản phẩm đã được thêm thành công!";
-        product = new Product(); // Reset form
-        StateHasChanged();
-
-        // Navigate to product list after a brief delay
-        await Task.Delay(1000);
-        Navigation.NavigateTo("/products");
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            isSubmitting = true;
+            errorMessage = null;
+            await ProductService.AddProductAsync(product, selectedFile);
+            NavigationManager.NavigateTo("/products");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+            isSubmitting = false;
+        }
     }
 
     private void Cancel()
     {
-        Navigation.NavigateTo("/products");
+        NavigationManager.NavigateTo("/products");
     }
 }

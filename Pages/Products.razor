@@ -1,64 +1,72 @@
 ﻿@page "/products"
 @using BlazorApp.Data
 @inject ProductService ProductService
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
-<h3>Danh sách sản phẩm</h3>
+<h3>Danh Sách Sản Phẩm</h3>
 
-<button class="btn btn-success mb-3" @onclick="NavigateToCreate">Tạo sản phẩm</button>
+<div class="mb-3">
+    <a href="/productcreate" class="btn btn-primary">Thêm Sản Phẩm Mới</a>
+</div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Số lượng</th>
-            <th>Nhà xuất bản</th>
-            <th>Thể loại</th>
-            <th>Ngày xuất bản</th>
-            <th>Tình trạng</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (products == null)
-        {
-            <tr>
-                <td colspan="10" class="text-center">Đang tải dữ liệu...</td>
-            </tr>
-        }
-        else if (!products.Any())
-        {
-            <tr>
-                <td colspan="10" class="text-center">Không có sản phẩm nào.</td>
-            </tr>
-        }
-        else
-        {
-            @foreach (var product in products)
-            {
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else if (!products.Any())
+{
+    <p>Chưa có sản phẩm nào.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>@product.Id</td>
-                    <td>@product.Name</td>
-                    <td>@product.Price.ToString("C")</td>
-                    <td>@product.Soluong</td>
-                    <td>@product.Nxb</td>
-                    <td>@product.Theloai</td>
-                    <td>@product.Ngayxb</td>
-                    <td>@product.Tinhtrang</td> <!-- Displaying the product status -->
-                    <td>
-                        <button class="btn btn-info" @onclick="() => NavigateToEdit(product.Id)">Sửa</button>
-                        <button class="btn btn-danger" @onclick="() => DeleteProduct(product.Id)">Xóa</button>
-                    </td>
+                    <th>Hình Ảnh</th>
+                    <th>Tên Sách</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th>Tác Giả</th>
+                    <th>Thể Loại</th>
+                    <th>Tình Trạng</th>
+                    <th>Thao Tác</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @foreach (var product in products)
+                {
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(product.Hinhanh))
+                            {
+                                <img src="@product.Hinhanh" alt="@product.Name" style="max-width: 100px;" />
+                            }
+                            else
+                            {
+                                <span>No image</span>
+                            }
+                        </td>
+                        <td>@product.Name</td>
+                        <td>@product.Price.ToString("N0") đ</td>
+                        <td>@product.Soluong</td>
+                        <td>@product.Tentacgia</td>
+                        <td>@product.Theloai</td>
+                        <td>@product.Tinhtrang</td>
+                        <td>
+                            <a href="/productedit/@product.Id" class="btn btn-primary btn-sm">Sửa</a>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteProduct(product.Id)">Xóa</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
 
 @code {
-    private List<Product> products = new();
+    private List<Product>? products;
 
     protected override async Task OnInitializedAsync()
     {
@@ -67,18 +75,10 @@
 
     private async Task DeleteProduct(int id)
     {
-        await ProductService.DeleteProductAsync(id);
-        products = await ProductService.GetProductsAsync(); // Refresh the product list
-        StateHasChanged();
-    }
-
-    private void NavigateToCreate()
-    {
-        Navigation.NavigateTo("/product/create");
-    }
-
-    private void NavigateToEdit(int productId)
-    {
-        Navigation.NavigateTo($"/product/edit/{productId}");
+        if (await JSRuntime.InvokeAsync<bool>("confirm", new[] { "Bạn có chắc muốn xóa sản phẩm này?" }))
+        {
+            await ProductService.DeleteProductAsync(id);
+            products = await ProductService.GetProductsAsync();
+        }
     }
 }

@@ -1,38 +1,42 @@
 using Microsoft.EntityFrameworkCore;
-using BlazorApp.Data; // 💡 Đảm bảo bạn đã import namespace
+using BlazorApp.Data;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
-// 💡 SỬA ApplicationDbContext -> AppDbContext
+// Add database services
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql("server=localhost;database=dev_dotnet;user=dev_khaizinam;password=It@@246357",
-        new MySqlServerVersion(new Version(8, 0, 34))));
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 34)))
+);
 
+// Configure file upload
 builder.Services.Configure<FormOptions>(options =>
 {
     options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // 10 MB
 });
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://127.0.0.1:5076") });
+// Add application services
+builder.Services.AddScoped<WeatherForecastService>();
 builder.Services.AddScoped<ProductService>();
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddHttpClient();
-
-// Register the Blazor services
-builder.Services.AddServerSideBlazor();
+// Add file handling services
+builder.Services.AddSingleton<IWebHostEnvironment>(builder.Environment);
+builder.Services.Configure<FormOptions>(x =>
+{
+    x.ValueLengthLimit = int.MaxValue;
+    x.MultipartBodyLengthLimit = long.MaxValue;
+});
 
 var app = builder.Build();
 
-// Enable static file serving
-app.UseStaticFiles();  // This will serve files from wwwroot
-
+// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -40,6 +44,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 
 app.MapBlazorHub();
